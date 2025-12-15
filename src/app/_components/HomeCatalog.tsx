@@ -4,7 +4,10 @@ import { productsDummy } from "@/data";
 
 const HomeCatalog = () => {
   return (
-    <div className="flex flex-col ">
+    <div
+      className="flex flex-col gap-4
+     "
+    >
       <Categories />
       <ProductsGrid products={productsDummy} />
     </div>
