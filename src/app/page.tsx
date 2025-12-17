@@ -14,6 +14,7 @@ export default async function Home({
       <div className="relative aspect-3/1 w-full">
         <Image src="/featured.png" fill alt="hero image" />
       </div>
+
       <HomeCatalog />
       <ViewAllButton category={category} />
     </div>
