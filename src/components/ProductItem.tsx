@@ -10,8 +10,26 @@ interface IProductItem {
   product: Product;
 }
 
+type ProductType = {
+  type: "size" | "color";
+  value: string;
+};
+
 const ProductItem = ({ product }: IProductItem) => {
   const [selectedColorIndex, setSelectedColorIndex] = useState<number>(0);
+
+  const [producyType, setProducyType] = useState({
+    size: product.sizes[0],
+    color: product.colors[0],
+  });
+
+  const handleProductType = ({ type, value }: ProductType) => {
+    setProducyType((prev) => ({
+      ...prev,
+      [type]: value,
+    }));
+  };
+
   return (
     <div className=" shadow-lg rounded-lg overflow-hidden min-h-72">
       <div className="relative aspect-[2/2.5]">
@@ -36,7 +54,7 @@ const ProductItem = ({ product }: IProductItem) => {
               id="size"
               className="border p-1 rounded-md"
               onChange={(e) => {
-                e.preventDefault();
+                handleProductType({ type: "size", value: e.target.value });
               }}
             >
               {product.sizes.map((size) => (
@@ -54,7 +72,14 @@ const ProductItem = ({ product }: IProductItem) => {
 
                 return (
                   <button
-                    onClick={() => setSelectedColorIndex(index)}
+                    onClick={() => {
+                      setSelectedColorIndex(index);
+
+                      handleProductType({
+                        type: "color",
+                        value: color,
+                      });
+                    }}
                     key={color}
                     className={cn(
                       "flex justify-center items-center rounded-full border border-gray-300 py-1 px-1 gap-1 ",
