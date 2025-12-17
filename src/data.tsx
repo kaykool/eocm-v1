@@ -163,3 +163,14 @@ export const categories: Category[] = [
     slug: "gloves",
   },
 ] as const;
+
+export const CATEGORY_PARAM = "category";
+
+export type FilterType = { value: string; text: string };
+
+export const sortList: FilterType[] = [
+  { value: "newest", text: "Newest" },
+  { value: "oldest", text: "Oldest" },
+  { value: "low", text: "Price: From Low" },
+  { value: "high", text: "Price: From High" },
+];

@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Header = () => {
   return (
-    <nav className="main-container py-4 z-20 shadow-sm justify-between top-0 sticky bg-white">
+    <nav className="main-container py-4 z-20  justify-between top-0 sticky bg-white">
       <Link className="flex items-center " href="/">
         <Image src="/logo.png" alt={"trendsetter"} width={35} height={35} />
         <div className="font-bold text-lg">TRENDSETTER</div>
