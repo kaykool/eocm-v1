@@ -15,13 +15,13 @@ export const EDropdown = ({
       paramName: name,
     });
   return (
-    <div className="flex gap-2 items-center  justify-end">
+    <div className="flex gap-2 items-center justify-end">
       <label htmlFor={name}>Sort by: </label>
       <select
         name={name}
         id={name}
         value={sortByParam || 0}
-        className="border p-1 rounded-md"
+        className="border border-gray-200  p-1 rounded-md shadow-sm"
         onChange={(e) => setAndPushUrlParams(e.target.value)}
       >
         {data.map((op) => (

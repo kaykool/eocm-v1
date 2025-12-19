@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/cn";
 import { Product } from "@/types";
+import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -18,13 +19,13 @@ type ProductType = {
 const ProductItem = ({ product }: IProductItem) => {
   const [selectedColorIndex, setSelectedColorIndex] = useState<number>(0);
 
-  const [producyType, setProducyType] = useState({
+  const [productType, setProductType] = useState({
     size: product.sizes[0],
     color: product.colors[0],
   });
 
   const handleProductType = ({ type, value }: ProductType) => {
-    setProducyType((prev) => ({
+    setProductType((prev) => ({
       ...prev,
       [type]: value,
     }));
@@ -42,7 +43,7 @@ const ProductItem = ({ product }: IProductItem) => {
           />
         </Link>
       </div>
-      <div className="flex flex-col p-4 text-sm gap-2">
+      <div className="flex flex-col p-4 text-sm gap-4">
         <h3 className="font-bold text-md">{product.name}</h3>
         <p className="py-0 text-gray-600">{product.shortDescription}</p>
 
@@ -74,11 +75,7 @@ const ProductItem = ({ product }: IProductItem) => {
                   <button
                     onClick={() => {
                       setSelectedColorIndex(index);
-
-                      handleProductType({
-                        type: "color",
-                        value: color,
-                      });
+                      handleProductType({ type: "color", value: color });
                     }}
                     key={color}
                     className={cn(
@@ -103,7 +100,13 @@ const ProductItem = ({ product }: IProductItem) => {
         </div>
         <div className="flex justify-between  items-center">
           <div className="font-bold text-lg">${product.price.toFixed(0)}</div>
-          <button className="p-1 px-2 rounded-md shadow-md text-sm font-semibold border border-gray-400 hover:bg-black hover:text-white">
+          <button
+            onClick={() => {
+              console.log(`productType of id ${product.id}: `, productType);
+            }}
+            className="p-1 px-2 rounded-md shadow-md text-sm font-semibold border border-gray-100 hover:bg-black hover:text-white flex gap-2 items-center justify-center"
+          >
+            <ShoppingCart className="w-4" />
             Add To Card
           </button>
         </div>
